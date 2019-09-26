@@ -32,7 +32,8 @@ module.exports = {
       {test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader']}, // 这是配置处理.less文件的第三方规则
       {test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader']}, // 配置处理.sass文件的第三方规则
       {test: /\.vue$/, use: 'vue-loader'}, // 处理 .vue文件
-      {test:/\.(ttf|eot|svg|woff|woff2|otf)$/, use: 'url-loader'} // 处理字体文件
+      {test:/\.(ttf|eot|svg|woff|woff2|otf)$/, use: 'url-loader'}, // 处理字体文件
+      {test: /\.(png|jpg|gif|bmp|jpeg)$/, use: 'url-loader'} // 处理图片路径文件
     ]
   },
   resolve: {
