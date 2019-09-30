@@ -67,7 +67,6 @@ export default {
       this.getGoods()
     } */
     getDetail(id){
-      console.log(this);
       // 使用JS的形式的形式进行路由导航
 
       // this.$route 和 this.$router
