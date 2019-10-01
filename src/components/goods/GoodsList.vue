@@ -62,10 +62,10 @@ export default {
         }
       });
     },
-    /* getMore(){
+    getMore(){
       this.pageIdx++
       this.getGoods()
-    } */
+    },
     getDetail(id){
       // 使用JS的形式的形式进行路由导航
 

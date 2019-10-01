@@ -63,7 +63,7 @@
 // 导入轮播图组件
 import swiper from "../subcomponents/swipe.vue";
 // 导入数字选择框
-import numbox from '../subcomponents/goodsinfo_number.vue';
+import numbox from '../subcomponents/goodsinfo_numbox.vue';
 
 export default {
   data() {
@@ -109,6 +109,15 @@ export default {
     },
     addToShopCar(){
       this.ballFlag = !this.ballFlag;
+      // 拼接出一个对象，保存到store中的car数组中，作为商品信息。
+      var car = {
+        id: this.id,
+        count: this.selectedCount,
+        price: this.goodsinfo.sell_price,
+        selected: true
+      }
+      // 调用 store 中的 mutations来讲商品加入购物车
+      this.$store.commit('addToCar', car)
     },
     beforeEnter(el){
       el.style.transform = 'translate(0, 0)'
@@ -142,7 +151,6 @@ export default {
     getSelectorCount(count){
       // 当子组件把 选中的数量 传递给父组件时，把选中的值保存到 data 上
       this.selectedCount = count;
-      console.log(count);
     }
   },
   components: {

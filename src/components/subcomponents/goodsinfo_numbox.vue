@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import mui from '../../lib/mui/js/mui.min.js'
+import mui from '../../lib/mui/js/mui.js'
 
 export default {
   data(){
@@ -18,7 +18,6 @@ export default {
   props: ['max_count'],
   mounted(){
     mui('.mui-numbox').numbox()
-    console.log(this.max_count);
   },
   methods: {
     countChanged(){

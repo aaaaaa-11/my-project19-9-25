@@ -1,7 +1,11 @@
 <template>
   <div class="app-container">
     <!-- 顶部 Header 区域 -->
-    <mt-header class="myheader" fixed title="页面顶部"></mt-header>
+    <mt-header class="myheader" fixed title="页面顶部">
+			<span @click="goback" slot="left" v-show="flag">
+				<mt-button icon="back">返回</mt-button>
+			</span>
+		</mt-header>
 
     <!-- 中间 router-view 区域 -->
 		<transition>
@@ -19,7 +23,7 @@
 				<span class="mui-tab-label">会员</span>
 			</router-link>
 			<router-link class="mui-tab-item-lib" to="/shopcar">
-				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">0</span></span>
+				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">{{ $store.getters.getAllCount }}</span></span>
 				<span class="mui-tab-label">购物车</span>
 			</router-link>
 			<router-link class="mui-tab-item-lib" to="/search">
@@ -31,6 +35,35 @@
 </template>
 
 <script>
+export default {
+	data(){
+		return {
+			flag: false // 控制 返回 组件的显示/隐藏
+		}
+	},
+	methods: {
+		goback(){ // 返回上一页
+			this.$router.go(-1)
+		}
+	},
+	created(){ // 页面一加载就判断当前页面是否为首页，然后再确定是否显示 返回组件
+		if(this.$route.path === '/home'){
+			this.flag = false
+		}else {
+			this.flag = true;
+		}
+	},
+	watch: { // 监听路由变化，如果为首页，隐藏返回组件，否则显示
+		'$route.path': function(newVal){
+			if(newVal === '/home'){
+				this.flag = false;
+			}else {
+				this.flag = true
+			}
+		}
+	}
+}
+
 </script>
 
 <style lang="scss" scoped>
